@@ -1,0 +1,9 @@
+/*!
+  * vue-router v4.0.14
+  * (c) 2022 Eduardo San Martin Morote
+  * @license MIT
+  */
+
+//! moment.js
+
+//! moment.js locale configuration

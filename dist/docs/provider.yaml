@@ -1,0 +1,31 @@
+components:
+  parameters:
+    CreateProvider: 
+        type: object
+        required:
+          - name
+        properties:
+          name:
+            type: string
+    UpdateProvider: 
+        type: object
+        required:
+          - name
+          - id
+        properties:
+          name:
+            type: string
+          id:
+            type: string
+  definitions:
+    ProviderWithId:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        clients:
+          type: array
+          items:
+              type: string

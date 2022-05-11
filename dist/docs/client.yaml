@@ -1,0 +1,35 @@
+components:
+  parameters:
+    CreateClient: 
+        type: object
+        required:
+          - name
+          - email
+          - phone
+        properties:
+          name:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+          providers:
+            type: array
+            items:
+              type: string
+  definitions: 
+    ClientWithId: 
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        providers:
+          type: array
+          items:
+            $ref: 'provider.yaml#/components/definitions/ProviderWithId'

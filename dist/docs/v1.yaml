@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: API DOC
+  version: 0.1
+paths:
+  #CLIENTS
+  /clients:
+    get:
+      tags:
+        - Client
+      summary: Get list of all clients
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: List of clients.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './src/docs/client.yaml#/components/definitions/ClientWithId'
+  /clients/:clientId:
+    get:
+      tags:
+        - Client
+      summary: Get client by ID
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: clientId
+          schema:
+            type: string
+          required: true
+          description: Mongo ID of the client to get
+      responses:
+        '200':
+          description: Client information.
+          content:
+            application/json:
+              schema:
+                $ref: './src/docs/client.yaml#/components/definitions/ClientWithId'
+
+  /clients/create:
+    post:
+      tags:
+        - Client
+      summary: Creates a new client
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: The user to create.
+          schema:
+            $ref: './src/docs/client.yaml#/components/parameters/CreateClient'
+      responses:
+        '200':
+          description: Created client.
+          content:
+            application/json:
+              schema:
+                $ref: './src/docs/client.yaml#/components/definitions/ClientWithId'
+  /clients/update:
+    put:
+      tags:
+        - Client
+      summary: Update existing client information.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: Client info.
+          schema:
+            $ref: './src/docs/client.yaml#/components/parameters/CreateClient'
+      responses:
+        '200':
+          description: Created client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+  /clients/delete/:clientId:
+    delete:
+      tags:
+        - Client
+      summary: Delete client by it's ID
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: clientId
+          schema:
+            type: string
+          required: true
+          description: Mongo ID of the client to delete
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Mongoose error description
+  #PROVIDERS
+  /providers:
+    get:
+      tags:
+        - Provider
+      summary: Get list of all providers
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: List of providers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './src/docs/provider.yaml#/components/definitions/ProviderWithId'
+        '400':
+          description: Mongoose error description
+  /providers/create:
+    post:
+      tags:
+        - Provider
+      summary: Creates a new provider
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: The provider name to create.
+          schema:
+            id: string
+      responses:
+        '200':
+          description: Created provider.
+          content:
+            application/json:
+              schema:
+                $ref: './src/docs/provider.yaml#/components/definitions/ProviderWithId'
+        '400':
+          description: Mongoose error description
+  /providers/update:
+    put:
+      tags:
+        - Provider
+      summary: Update existing provider information.
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: Provider info.
+          schema:
+            $ref: './src/docs/provider.yaml#/components/parameters/UpdateProvider'
+      responses:
+        '200':
+          description: Updated provider.
+          content:
+            application/json:
+              schema:
+                $ref: './src/docs/provider.yaml#/components/definitions/ProviderWithId'
+        '400':
+          description: Mongoose error description
+  /providers/delete/:providerId:
+    delete:
+      tags:
+        - Provider
+      summary: Delete provider by ID
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          description: Provider ID.
+          schema:
+            id: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Mongoose error description
+
+components:
+  parameters:
+    Provider: create
+  schemas:
+      Client:
+        $ref: './src/docs/client.yaml#/components/definitions/ClientWithId'
+      Provider:
+        $ref: './src/docs/provider.yaml#/components/definitions/ProviderWithId'
+  
