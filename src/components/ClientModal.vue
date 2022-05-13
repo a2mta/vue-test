@@ -127,7 +127,7 @@ const confirmDelete = () => {
   Modal.confirm({
     title: 'Confirm',
     icon: createVNode(ExclamationCircleOutlined),
-    content: 'You sure u wanna delete ?',
+    content: 'Confirm deletion',
     okText: 'Delete',
     cancelText: 'Cancel',
     onOk: handleClientDelete,
